@@ -1,487 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rinold Rosario P J | Interactive Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rinold Rosario P J | Interactive Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    :root {
-      --primary: #000000; /* Black */
-      --secondary: #444444;
-      --accent: #b57b50; /* Warm brown accent */
-      --text: #000000;
-      --bg: #f5f0e6; /* Elegant beige */
-      --card-bg: #ffffff;
-      --dark-card: #fdfaf6;
-      --lighter-dark: #f7f3ed;
-    }
+    :root {
+      --primary: #000000; /* Black */
+      --secondary: #444444;
+      --accent: #b57b50; /* Warm brown accent */
+      --text: #000000;
+      --bg: #f5f0e6; /* Elegant beige */
+      --card-bg: #ffffff;
+      --dark-card: #fdfaf6;
+      --lighter-dark: #f7f3ed;
+    }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-    /* Top Contact Bar */
-    .contact-flash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--accent); /* Static warm brown */
-      padding: 15px 0;
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+    /* Top Contact Bar */
+    .contact-flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--accent); /* Static warm brown */
+      padding: 15px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
 
-    .contact-flash a {
-      color: white;
-      text-decoration: none;
-      margin: 0 20px;
-      font-weight: 800;
-      font-size: 1.05rem;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
+    .contact-flash a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
 
-    .contact-flash strong {
-      color: white;
-    }
+    .contact-flash strong {
+      color: white;
+    }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg);
-      position: relative;
-      margin-top: 60px; /* To account for the fixed contact bar */
-    }
+    /* Professional Photo */
+    .profile-photo {
+      position: fixed;
+      top: 80px;
+      right: 30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--accent);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      z-index: 999;
+      transition: all 0.3s ease;
+      background: var(--card-bg);
+    }
 
-    .hero-content {
-      text-align: center;
-    }
+    .profile-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(181, 123, 80, 0.3);
+    }
 
-    .hero h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
-    .hero .tagline {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      margin-bottom: 2rem;
-      color: var(--secondary);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
+    /* Photo upload area for demonstration */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent), #a06846);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      cursor: pointer;
+    }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite;
-    }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      position: relative;
+      margin-top: 60px;
+      padding-right: 180px; /* Make space for photo on larger screens */
+    }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
-    }
+    .hero-content {
+      text-align: center;
+    }
 
-    /* Sections */
-    .section {
-      min-height: 100vh;
-      padding: 100px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(100px);
-      transition: all 0.8s ease;
-      background: var(--bg);
-      color: var(--text);
-    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
 
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .hero .tagline {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      margin-bottom: 2rem;
+      color: var(--secondary);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
 
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
 
-    .section-content {
-      background: var(--lighter-dark);
-      border-radius: 20px;
-      padding: 60px 40px;
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
 
-    .section h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: var(--primary);
-      text-align: center;
-    }
+    /* Sections */
+    .section {
+      min-height: 100vh;
+      padding: 100px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.8s ease;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-    /* About Section */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-      align-items: center;
-    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    .profile-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
 
-    .profile-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin: 0 auto 20px;
-      display: block; /* changed from flex to block for image */
-      object-fit: cover; /* ensures image covers the circle */
-      border: 5px solid var(--accent); /* border around the image */
-    }
+    .section-content {
+      background: var(--lighter-dark);
+      border-radius: 20px;
+      padding: 60px 40px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
 
-    /* Timeline */
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-    }
+    .section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-align: center;
+    }
 
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent);
-    }
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      align-items: center;
+    }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 15px;
-      border-left: 4px solid var(--accent);
-      border: 1px solid rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.6s ease;
-    }
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
 
-    .section.visible .timeline-item {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+    }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -37px;
-      top: 30px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
 
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent);
+    }
 
-    .skill-card {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      border: 1px solid rgba(0,0,0,0.1);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+      border: 1px solid rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.6s ease;
+    }
 
-    .section.visible .skill-card {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .section.visible .timeline-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-    .skill-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 20px;
-      background: var(--accent);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 30px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
 
-    .contact-card {
-      background: var(--card-bg);
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      border: 1px solid rgba(0,0,0,0.1);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-    }
+    .skill-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
 
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      border-color: var(--accent);
-    }
+    .section.visible .skill-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    .download-btn {
-      display: inline-block;
-      padding: 15px 40px;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      margin-top: 30px;
-      transition: all 0.3s ease;
-    }
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
 
-    .download-btn:hover {
-      transform: translateY(-3px);
-      background: #a06846;
-    }
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-    }
-  </style>
+    .contact-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      background: #a06846;
+    }
+
+    /* File input styling */
+    #photoUpload {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .profile-photo {
+        width: 100px;
+        height: 100px;
+        top: 70px;
+        right: 20px;
+      }
+      
+      .hero {
+        padding-right: 140px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .profile-photo {
+        width: 80px;
+        height: 80px;
+        top: 65px;
+        right: 15px;
+      }
+      
+      .hero {
+        padding-right: 20px;
+        padding-top: 60px;
+      }
+      
+      .hero-content {
+        margin-top: 40px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="contact-flash">
-    📧 <a href="mailto:rinoldpj@gmail.com">rinoldpj@gmail.com</a> |
-    📱 <a href="tel:+971556840762">+971 55 684 0762</a> |
-    💼 <a href="https://linkedin.com/in/rinold-rosario" target="_blank">LinkedIn</a> |
-    🚀 <strong>IMMEDIATE JOINER • UAE VISIT VISA</strong>
-  </div>
+  <!-- Contact Bar -->
+  <div class="contact-flash">
+    📧 <a href="mailto:rinoldpj@gmail.com">rinoldpj@gmail.com</a> |
+    📱 <a href="tel:+971556840762">+971 55 684 0762</a> |
+    💼 <a href="https://linkedin.com/in/rinold-rosario" target="_blank">LinkedIn</a> |
+    🚀 <strong>IMMEDIATE JOINER • UAE VISIT VISA</strong>
+  </div>
 
-    <section class="hero">
-    <div class="hero-content">
-      <h1>Rinold Rosario P J</h1>
-      <p class="tagline">
-        🔧💼 Tech-Driven HR-ADMIN Professional | 🤝 Bridging Admin Operations & People Management<br>
-        🌐📊 Naukri Gulf Certified Recruiter | Oracle HCM Certified | Optimistic • Versatile • Adaptable
-      </p>
-    </div>
-    <div class="scroll-indicator">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
-        <path d="M7 10l5 5 5-5z"/>
-      </svg>
-    </div>
-  </section>
+  <!-- Professional Photo -->
+  <div class="profile-photo" onclick="document.getElementById('photoUpload').click()">
+    <div class="photo-placeholder" id="photoPlaceholder">
+      Click to Add Photo
+    </div>
+    <input type="file" id="photoUpload" accept="image/*" onchange="loadPhoto(event)">
+  </div>
 
-    <section class="section">
-    <div class="container">
-      <div class="section-content">
-        <h2>About Me</h2>
-        <div class="about-grid">
-          <div class="profile-card">
-            <img src="image.jpg" alt="Rinold Rosario P J" class="profile-avatar">
-            <h3>Tech-HR Hybrid</h3>
-            <p>Bridging technology and talent with precision and passion</p>
-          </div>
-          <div>
-            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;">
-              Detail-oriented IT professional with <strong style="color: var(--accent);">2 years of TCS experience</strong>, now transitioning into HR/Admin roles with an MBA in HR & Business Analytics. As a certified recruiter with deep tech background, I bring unique value in HR technology implementation and data-driven talent management.
-            </p>
-            <p style="font-size: 1.1rem; line-height: 1.7;">
-              My technical foundation in ServiceNow, Power BI, and Oracle HCM, combined with hands-on HR experience across multiple internships, positions me perfectly for modern HR roles that require both people skills and technological proficiency.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Rinold Rosario P J</h1>
+      <p class="tagline">
+        🔧💼 Tech-Driven HR-ADMIN Professional | 🤝 Bridging Admin Operations & People Management<br>
+        🌐📊 Naukri Gulf Certified Recruiter | Oracle HCM Certified | Optimistic • Versatile • Adaptable
+      </p>
+    </div>
+    <div class="scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
+        <path d="M7 10l5 5 5-5z"/>
+      </svg>
+    </div>
+  </section>
 
-    <section class="section">
-    <div class="container">
-      <div class="section-content">
-        <h2>Professional Journey</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h3 style="color: var(--accent); margin-bottom: 10px;">TCS Chennai, India (Aug 2021 – April 2023)</h3>
-            <h4>Process Associate</h4>
-            <p>Led incident management and SLA tracking using ServiceNow. Developed documentation systems and maintained 98% client satisfaction.</p>
-          </div>
-          <div class="timeline-item">
-            <h3 style="color: var(--accent); margin-bottom: 10px;">OJI India Packaging Pvt Ltd (Jan - Mar 2025)</h3>
-            <h4>HR Intern</h4>
-            <p>Implemented HRMIS systems and streamlined payroll processes. Hands-on experience in recruitment and employee lifecycle management.</p>
-          </div>
-          <div class="timeline-item">
-            <h3 style="color: var(--accent); margin-bottom: 10px;">Hyundai WIA Pvt Ltd (Aug 2024)</h3>
-            <h4>HR Intern</h4>
-            <p>Focused on talent acquisition and employee engagement initiatives in automotive manufacturing.</p>
-          </div>
-          <div class="timeline-item">
-            <h3 style="color: var(--accent); margin-bottom: 10px;">CEAT Tyres Pvt Ltd (Jan-Feb 2024)</h3>
-            <h4>Maintenance Intern</h4>
-            <p>Cross-functional experience in operations and maintenance, enhancing understanding of industrial HR requirements.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- About -->
+  <section class="section">
+    <div class="container">
+      <div class="section-content">
+        <h2>About Me</h2>
+        <div class="about-grid">
+          <div class="profile-card">
+            <div class="profile-avatar">RP</div>
+            <h3>Tech-HR Hybrid</h3>
+            <p>Bridging tech and talent with precision and passion</p>
+          </div>
+          <div>
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;">
+              Detail-oriented IT professional with <strong style="color: var(--accent);">2 years of TCS experience</strong>, now transitioning into HR/Admin roles with an MBA in HR & Business Analytics. As a certified recruiter with deep tech background, I bring unique value in HR technology implementation and data-driven talent management.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.7;">
+              My technical foundation in ServiceNow, Power BI, and Oracle HCM, combined with hands-on HR experience across multiple internships, positions me perfectly for modern HR roles that require both people skills and technological proficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-    <div class="container">
-      <div class="section-content">
-        <h2>Core Competencies</h2>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon">📊</div>
-            <h3>Data Analytics</h3>
-            <p>Power BI • Business Analytics • HR Metrics • Data Visualization</p>
-          </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔧</div>
-            <h3>Technical Operations</h3>
-            <p>ServiceNow • Incident Management • SLA Tracking • Documentation</p>
-          </div>
-          <div class="skill-card">
-            <div class="skill-icon">👥</div>
-            <h3>Human Resources</h3>
-            <p>HRMIS • Payroll • Recruitment • Oracle HCM • Employee Relations</p>
-          </div>
-          <div class="skill-card">
-            <div class="skill-icon">🎯</div>
-            <h3>Business Management</h3>
-            <p>Process Optimization • Project Management • Client Relations • Quality Assurance</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Experience -->
+  <section class="section">
+    <div class="container">
+      <div class="section-content">
+        <h2>Professional Journey</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3 style="color: var(--accent); margin-bottom: 10px;">TCS Chennai, India (Aug 2021 – April 2023)</h3>
+            <h4>Process Associate</h4>
+            <p>Led incident management and SLA tracking using ServiceNow. Developed documentation systems and maintained 98% client satisfaction.</p>
+          </div>
+          <div class="timeline-item">
+            <h3 style="color: var(--accent); margin-bottom: 10px;">OJI India Packaging Pvt Ltd (Jan - Mar 2025)</h3>
+            <h4>HR Intern</h4>
+            <p>Implemented HRMIS systems and streamlined payroll processes. Hands-on experience in recruitment and employee lifecycle management.</p>
+          </div>
+          <div class="timeline-item">
+            <h3 style="color: var(--accent); margin-bottom: 10px;">Hyundai WIA Pvt Ltd (Aug 2024)</h3>
+            <h4>HR Intern</h4>
+            <p>Focused on talent acquisition and employee engagement initiatives in automotive manufacturing.</p>
+          </div>
+          <div class="timeline-item">
+            <h3 style="color: var(--accent); margin-bottom: 10px;">CEAT Tyres Pvt Ltd (Jan-Feb 2024)</h3>
+            <h4>Maintenance Intern</h4>
+            <p>Cross-functional experience in operations and maintenance, enhancing understanding of industrial HR requirements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-    <div class="container">
-      <div class="section-content">
-        <h2>Academic Foundation</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
-          <div class="skill-card">
-            <div class="skill-icon">🎓</div>
-            <h3>MBA in HR & Business Analytics</h3>
-            <p><strong>2023 – 2025</strong><br>Specialized focus on HR technology integration and data-driven decision making</p>
-          </div>
-          <div class="skill-card">
-            <div class="skill-icon">💻</div>
-            <h3>BSc Computer Science</h3>
-            <p><strong>2017 – 2020</strong><br>Strong foundation in programming, systems analysis, and technical problem-solving</p>
-          </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 40px;">
-          <h3 style="color: var(--accent); margin-bottom: 20px;">Professional Certifications</h3>
-          <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-            <span style="background: var(--accent); color: white; padding: 10px 20px; border-radius: 25px; font-weight: 500;">🏆 Oracle HCM Professional</span>
-            <span style="background: var(--accent); color: white; padding: 10px 20px; border-radius: 25px; font-weight: 500;">📋 Naukri Gulf Certified Recruiter</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Skills -->
+  <section class="section">
+    <div class="container">
+      <div class="section-content">
+        <h2>Core Competencies</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>Power BI • Business Analytics • HR Metrics • Data Visualization</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🔧</div>
+            <h3>Technical Operations</h3>
+            <p>ServiceNow • Incident Management • SLA Tracking • Documentation</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">👥</div>
+            <h3>Human Resources</h3>
+            <p>HRMIS • Payroll • Recruitment • Oracle HCM • Employee Relations</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎯</div>
+            <h3>Business Management</h3>
+            <p>Process Optimization • Project Management • Client Relations • Quality Assurance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-    <div class="container">
-      <div class="section-content">
-        <h2>Let's Connect</h2>
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="skill-icon">📧</div>
-            <h3>Email</h3>
-            <p><a href="mailto:rinoldpj@gmail.com" style="color: var(--accent); text-decoration: none;">rinoldpj@gmail.com</a></p>
-          </div>
-          <div class="contact-card">
-            <div class="skill-icon">📱</div>
-            <h3>Phone</h3>
-            <p>🇮🇳 +91 88383 34227<br>🇦🇪 +971 55 684 0762</p>
-          </div>
-          <div class="contact-card">
-            <div class="skill-icon">💼</div>
-            <h3>LinkedIn</h3>
-            <p><a href="https://linkedin.com/in/rinold-rosario" target="_blank" style="color: var(--accent); text-decoration: none;">linkedin.com/in/rinold-rosario</a></p>
-          </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 40px;">
-          <p style="font-size: 1.5rem; margin-bottom: 20px; color: var(--primary); font-weight: 600;">
-            ✈️ Available for Immediate Joining (UAE)
-          </p>
-          <a href="Rinold_CV.pdf" class="download-btn" download>📄 Download Resume</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Education -->
+  <section class="section">
+    <div class="container">
+      <div class="section-content">
+        <h2>Academic Foundation</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+          <div class="skill-card">
+            <div class="skill-icon">🎓</div>
+            <h3>MBA in HR & Business Analytics</h3>
+            <p><strong>2023 – 2025</strong><br>Specialized focus on HR technology integration and data-driven decision making</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">💻</div>
+            <h3>BSc Computer Science</h3>
+            <p><strong>2017 – 2020</strong><br>Strong foundation in programming, systems analysis, and technical problem-solving</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <h3 style="color: var(--accent); margin-bottom: 20px;">Professional Certifications</h3>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+            <span style="background: var(--accent); color: white; padding: 10px 20px; border-radius: 25px; font-weight: 500;">🏆 Oracle HCM Professional</span>
+            <span style="background: var(--accent); color: white; padding: 10px 20px; border-radius: 25px; font-weight: 500;">📋 Naukri Gulf Certified Recruiter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
+  <!-- Contact -->
+  <section class="section">
+    <div class="container">
+      <div class="section-content">
+        <h2>Let's Connect</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="skill-icon">📧</div>
+            <h3>Email</h3>
+            <p><a href="mailto:rinoldpj@gmail.com" style="color: var(--accent); text-decoration: none;">rinoldpj@gmail.com</a></p>
+          </div>
+          <div class="contact-card">
+            <div class="skill-icon">📱</div>
+            <h3>Phone</h3>
+            <p>🇮🇳 +91 88383 34227<br>🇦🇪 +971 55 684 0762</p>
+          </div>
+          <div class="contact-card">
+            <div class="skill-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p><a href="https://linkedin.com/in/rinold-rosario" target="_blank" style="color: var(--accent); text-decoration: none;">linkedin.com/in/rinold-rosario</a></p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <p style="font-size: 1.5rem; margin-bottom: 20px; color: var(--primary); font-weight: 600;">
+            ✈️ Available for Immediate Joining (UAE)
+          </p>
+          <a href="Rinold_CV.pdf" class="download-btn" download>📄 Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    sections.forEach(section => observer.observe(section));
-  </script>
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
+    function loadPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const placeholder = document.getElementById('photoPlaceholder');
+          placeholder.innerHTML = `<img src="${e.target.result}" alt="Rinold Rosario">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 </body>
 </html>
